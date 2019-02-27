@@ -116,7 +116,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551293857863" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551294099904" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
@@ -160,7 +160,7 @@
       <option name="presentableId" value="Default" />
       <updated>1551204092595</updated>
       <workItem from="1551204100548" duration="12768000" />
-      <workItem from="1551285174297" duration="6047000" />
+      <workItem from="1551285174297" duration="6357000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1551293665875</created>
@@ -173,7 +173,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18815000" />
+    <option name="totallyTimeSpent" value="19125000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
