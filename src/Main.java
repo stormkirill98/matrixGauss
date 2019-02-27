@@ -91,14 +91,6 @@ public class Main {
         System.out.printf("(%s * %.2f)=>\n", numToRim(indexEq), coef);
     }
 
-    private static void printAction(Double coef, int indexEqStart, int indexEqEnd){
-        String result = "(";
-
-        for (int i = indexEqStart; i < indexEqEnd; i++){
-
-        }
-    }
-
     private static String numToRim(int num){
         switch (num){
             case 1:

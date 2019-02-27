@@ -71,11 +71,13 @@ class Equation {
     }
 
     Equation plusEquation(Equation eqAdded){
-        eqAdded.mult(-this.equation.get(indexFirstNotZero()));
+        Equation eq = new Equation(eqAdded);
+        int indexFirstNotZero = eq.indexFirstNotZero();
+        eq.mult(-this.equation.get(indexFirstNotZero));
 
         Equation newEq = new Equation();
         for (int i = 0; i < this.equation.size(); i++){
-            newEq.add(this.equation.get(i) + eqAdded.get(i));
+            newEq.add(this.equation.get(i) + eq.get(i));
         }
 
         return newEq;

@@ -26,8 +26,7 @@ public class LinearSystem {
         while(equations.hasNext()){
             Equation equation = equations.next();
 
-            Equation newEq = plusEquation(equation, new Equation(eq), start - 1);
-            //Equation newEq = equation.plusEquation(new Equation(eq));
+            Equation newEq = equation.plusEquation(eq);
 
             equations.set(newEq);
         }
@@ -38,22 +37,10 @@ public class LinearSystem {
         while(equations.hasPrevious()){
             Equation equation = equations.previous();
 
-            Equation newEq = plusEquation(equation, new Equation(eq), start);
+            Equation newEq = equation.plusEquation(eq);
 
             equations.set(newEq);
         }
-    }
-
-    //TODO: можно уменьшить аргументы, вызывая уравнение.метод()
-    private Equation plusEquation(Equation toEq, Equation eqAdded, int indexCoef){
-        eqAdded.mult(-toEq.get(indexCoef));
-
-        Equation newEq = new Equation();
-        for (int i = 0; i < toEq.size(); i++){
-            newEq.add(toEq.get(i) + eqAdded.get(i));
-        }
-
-        return newEq;
     }
 
     int size(){
@@ -68,12 +55,18 @@ public class LinearSystem {
         System.out.println();
     }
 
-    public boolean validate(){
+    boolean validate(){
         for (int i = 0; i < system.size() - 1; i++){
             if (system.get(i).size() != system.get(i + 1).size()){
                 return  false;
             }
         }
+
+        if (system.size() == system.get(0).size()){
+            return false;
+        }
+
+
         return true;
     }
 
