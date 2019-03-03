@@ -74,6 +74,11 @@ public class Main {
             Equation eq = equationListIterator.previous();
             system.plusEquationsFromEnd(eq, i);
             i--;
+
+            if (i == 0) {
+                return;
+            }
+
             system.print();
         }
     }
