@@ -12,12 +12,14 @@ public class Main {
 
         try {
             Files.lines(Paths.get("input")).forEach(s -> {
-                Equation eq = new Equation();
-                for (String num : s.split(" ")) {
-                    eq.add(Double.valueOf(num));
-                }
+                if (!s.contains("x")){
+                    Equation eq = new Equation();
+                    for (String num : s.split(" ")) {
+                        eq.add(Double.valueOf(num));
+                    }
 
-                system.add(eq);
+                    system.add(eq);
+                }
             });
         } catch (NumberFormatException e) {
             System.out.println("Check input date: " + e.getMessage().toLowerCase());
@@ -126,7 +128,6 @@ public class Main {
                 return String.valueOf(num);
         }
     }
-
 }
 
 
