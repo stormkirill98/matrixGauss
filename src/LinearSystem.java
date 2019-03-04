@@ -91,7 +91,8 @@ public class LinearSystem {
 
     boolean validate() {
         for (int i = 0; i < system.size() - 1; i++) {
-            if (system.get(i).size() != system.get(i + 1).size()) {
+            if (system.get(i).size() != system.get(i + 1).size()
+                || system.size() > system.get(i).size()) {
                 return false;
             }
         }
