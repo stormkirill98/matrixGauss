@@ -33,13 +33,13 @@ public class LinearSystem {
             Equation equation = equations.next();
 
             if (Main.printActions) {
-                System.out.print(Main.numToRim(system.indexOf(equation) + 1));
+                System.out.print(Utility.numToRim(system.indexOf(equation) + 1));
             }
 
             Equation newEq = equation.plusEquation(eq);
 
             if (Main.printActions) {
-                System.out.println(" * " + Main.numToRim(system.indexOf(eq) + 1));
+                System.out.println(" * " + Utility.numToRim(system.indexOf(eq) + 1));
             }
 
             equations.set(newEq);
@@ -60,13 +60,13 @@ public class LinearSystem {
             Equation equation = equations.previous();
 
             if (Main.printActions) {
-                System.out.print(Main.numToRim(system.indexOf(equation) + 1));
+                System.out.print(Utility.numToRim(system.indexOf(equation) + 1));
             }
 
             Equation newEq = equation.plusEquation(eq);
 
             if (Main.printActions) {
-                System.out.println(" * " + Main.numToRim(system.indexOf(eq) + 1));
+                System.out.println(" * " + Utility.numToRim(system.indexOf(eq) + 1));
             }
 
             equations.set(newEq);
@@ -92,7 +92,7 @@ public class LinearSystem {
     boolean validate() {
         for (int i = 0; i < system.size() - 1; i++) {
             if (system.get(i).size() != system.get(i + 1).size()
-                || system.size() > system.get(i).size()) {
+                    || system.size() > system.get(i).size()) {
                 return false;
             }
         }
@@ -101,8 +101,18 @@ public class LinearSystem {
             return false;
         }
 
+        for (Equation eq : system){
+            if (!eq.validate()){
+                System.out.println("Check equation №" + (system.indexOf(eq) + 1));
+                return false;
+            }
+        }
 
         return true;
+    }
+
+    ListIterator<Equation> getIterator() {
+        return getIterator(0);
     }
 
     ListIterator<Equation> getIterator(int start) {

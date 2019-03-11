@@ -12,7 +12,7 @@ public class Main {
 
         try {
             Files.lines(Paths.get("input")).forEach(s -> {
-                if (!s.contains("x")){
+                if (!s.contains("x")) {
                     Equation eq = new Equation();
                     for (String num : s.split(" ")) {
                         eq.add(Double.valueOf(num));
@@ -47,10 +47,12 @@ public class Main {
         System.out.println("Revers course");
         reversCourse(system);
         system.print();
+
+        printExpressVars(system);
     }
 
     private static void directCourse(LinearSystem system) {
-        ListIterator<Equation> equationListIterator = system.getIterator(0);
+        ListIterator<Equation> equationListIterator = system.getIterator();
         int i = 1;
         while (equationListIterator.hasNext()) {
             Equation eq = equationListIterator.next();
@@ -99,35 +101,16 @@ public class Main {
     }
 
     private static void printAction(Double coef, int indexEq) {
-        System.out.printf("(%s * %.2f)=>\n", numToRim(indexEq), coef);
+        System.out.printf("(%s * %.2f)=>\n", Utility.numToRim(indexEq), coef);
     }
 
-    public static String numToRim(int num) {
-        switch (num) {
-            case 1:
-                return "I";
-            case 2:
-                return "II";
-            case 3:
-                return "III";
-            case 4:
-                return "IV";
-            case 5:
-                return "V";
-            case 6:
-                return "VI";
-            case 7:
-                return "VII";
-            case 8:
-                return "VIII";
-            case 9:
-                return "IX";
-            case 10:
-                return "X";
-            default:
-                return String.valueOf(num);
+    private static void printExpressVars(LinearSystem system) {
+        ListIterator<Equation> equationListIterator = system.getIterator();
+        while (equationListIterator.hasNext()) {
+            Equation eq = equationListIterator.next();
+            eq.printExpressVar();
         }
     }
+
+
 }
-
-

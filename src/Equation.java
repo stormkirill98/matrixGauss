@@ -4,8 +4,6 @@ import java.util.ListIterator;
 
 
 class Equation {
-    private static final double ERROR = 0.00000001;
-
     private List<Double> equation;
 
     Equation() {
@@ -57,7 +55,8 @@ class Equation {
 
     void print() {
         for (Double num : equation) {
-            System.out.printf("%5.2f ", num);
+            String fractionNum = Utility.convertDecimalToFraction(num);
+            System.out.printf("%7s ", fractionNum);
         }
     }
 
@@ -73,6 +72,9 @@ class Equation {
     Equation plusEquation(Equation eqAdded) {
         Equation eq = new Equation(eqAdded);
         int indexFirstNotZero = eq.indexFirstNotZero();
+        if (indexFirstNotZero < 0) {
+            return this;
+        }
         Double coef = -this.equation.get(indexFirstNotZero);
         eq.mult(coef);
 
@@ -94,11 +96,60 @@ class Equation {
 
     private int indexFirstNotZero() {
         for (int i = 0; i < this.equation.size(); i++) {
-            if (Math.abs(equation.get(i)) > ERROR) {
+            if (Math.abs(equation.get(i)) > Utility.TOLERANCE) {
                 return i;
             }
         }
 
-        return 0;
+        return -1;
     }
+
+    void printExpressVar() {
+        int index = indexFirstNotZero();
+        if (index < 0) {
+            return;
+        }
+        StringBuilder str = new StringBuilder("x"
+                + (index + 1) + " = "
+                + Utility.convertDecimalToFraction(equation.get(equation.size() - 1)));
+
+        index++;
+
+        for (; index < equation.size() - 1; index++) {
+            if (equation.get(index) == 0) {
+                continue;
+            }
+
+            double num = equation.get(index);
+            if (num > 0) {
+                String numStr = Utility.convertDecimalToFraction(num);
+                if (numStr.equals("1")) {
+                    str.append(" - x").append(index + 1);
+                } else {
+                    str.append(" - ").append(numStr).append("*x").append(index + 1);
+                }
+            } else {
+                String numStr = Utility.convertDecimalToFraction(Math.abs(num));
+                if (numStr.equals("1")) {
+                    str.append(" + x").append(index + 1);
+                } else {
+                    str.append(" + ").append(numStr).append("*x").append(index + 1);
+                }
+            }
+        }
+
+        System.out.println(str);
+    }
+
+    public boolean validate(){
+        boolean allCoefZero = true;
+        for (int i = 0; i < size() - 1; i++){
+            if (Math.abs(equation.get(i)) > Utility.TOLERANCE){
+                allCoefZero = false;
+            }
+        }
+
+        return !allCoefZero;
+    }
+
 }
