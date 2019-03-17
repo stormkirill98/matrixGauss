@@ -110,7 +110,7 @@ class Equation {
             return;
         }
         StringBuilder str = new StringBuilder("x"
-                + (index + 1) + " = "
+                + (index) + " = "
                 + Utility.convertDecimalToFraction(equation.get(equation.size() - 1)));
 
         index++;
