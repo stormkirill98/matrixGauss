@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -104,36 +105,41 @@ class Equation {
         return -1;
     }
 
-    void printExpressVar() {
-        int index = indexFirstNotZero();
-        if (index < 0) {
+    void swap(int i1, int i2){
+        Collections.swap(equation, i1, i2);
+    }
+
+    void printExpressVar(int index) {
+        if (index < 0 || index > size() - 1) {
             return;
         }
         StringBuilder str = new StringBuilder("x"
-                + (index) + " = "
+                + (index + 1) + " = "
                 + Utility.convertDecimalToFraction(equation.get(equation.size() - 1)));
 
-        index++;
 
-        for (; index < equation.size() - 1; index++) {
-            if (equation.get(index) == 0) {
+        for (int i = 0; i < equation.size() - 1; i++) {
+            if (i == index){
+                continue;
+            }
+            if (equation.get(i) == 0) {
                 continue;
             }
 
-            double num = equation.get(index);
+            double num = equation.get(i);
             if (num > 0) {
                 String numStr = Utility.convertDecimalToFraction(num);
                 if (numStr.equals("1")) {
-                    str.append(" - x").append(index + 1);
+                    str.append(" - x").append(i + 1);
                 } else {
-                    str.append(" - ").append(numStr).append("*x").append(index + 1);
+                    str.append(" - ").append(numStr).append("*x").append(i + 1);
                 }
             } else {
                 String numStr = Utility.convertDecimalToFraction(Math.abs(num));
                 if (numStr.equals("1")) {
-                    str.append(" + x").append(index + 1);
+                    str.append(" + x").append(i + 1);
                 } else {
-                    str.append(" + ").append(numStr).append("*x").append(index + 1);
+                    str.append(" + ").append(numStr).append("*x").append(i + 1);
                 }
             }
         }
