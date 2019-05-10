@@ -128,7 +128,11 @@ public class Main {
     int i = 0;
     while (equationListIterator.hasNext()) {
       Equation eq = equationListIterator.next();
-      eq.printExpressVar(indexes.get(i++));
+      try {
+        eq.printExpressVar(indexes.get(i++));
+      } catch (IndexOutOfBoundsException e){
+        break;
+      }
     }
   }
 
