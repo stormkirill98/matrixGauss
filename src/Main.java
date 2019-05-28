@@ -15,6 +15,7 @@ public class Main {
     try {
       Files.lines(Paths.get("input")).forEach(s -> {
         s = s.replaceAll("  ", " ");
+        s = s.replaceAll(",", ".");
 
         if (indexesExpressVars.size() == 0) {
           for (String index : s.split(" ")) {
@@ -128,11 +129,7 @@ public class Main {
     int i = 0;
     while (equationListIterator.hasNext()) {
       Equation eq = equationListIterator.next();
-      try {
-        eq.printExpressVar(indexes.get(i++));
-      } catch (IndexOutOfBoundsException e){
-        break;
-      }
+      eq.printExpressVar(indexes.get(i++));
     }
   }
 
